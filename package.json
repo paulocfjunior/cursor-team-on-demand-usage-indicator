@@ -1,0 +1,95 @@
+{
+  "name": "cursor-team-on-demand-usage-indicator",
+  "displayName": "Cursor Team On-Demand Usage Indicator",
+  "description": "Cursor Team On-Demand Usage Indicator",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "publisher": "paulocfjunior",
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cursorUsage.showMenu",
+        "title": "Cursor Usage: Show Menu"
+      },
+      {
+        "command": "cursorUsage.refresh",
+        "title": "Cursor Usage: Refresh"
+      },
+      {
+        "command": "cursorUsage.login",
+        "title": "Cursor Usage: Login with Chrome"
+      },
+      {
+        "command": "cursorUsage.pasteCookie",
+        "title": "Cursor Usage: Paste Cookie"
+      },
+      {
+        "command": "cursorUsage.logout",
+        "title": "Cursor Usage: Logout"
+      }
+    ],
+    "configuration": {
+      "title": "Cursor Usage",
+      "properties": {
+        "cursorUsage.teamId": {
+          "type": "string",
+          "default": "",
+          "description": "Cursor team ID used by https://cursor.com/api/dashboard/get-team-spend."
+        },
+        "cursorUsage.refreshIntervalSeconds": {
+          "type": "number",
+          "enum": [
+            10,
+            15,
+            30,
+            60
+          ],
+          "default": 30,
+          "description": "Auto-refresh interval for the status bar usage value."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "vsix:package": "npm run compile && vsce package",
+    "vsix:publish": "npm run compile && vsce publish",
+    "vsix:publish:patch": "npm run compile && vsce publish patch",
+    "vsix:publish:minor": "npm run compile && vsce publish minor",
+    "vsix:publish:major": "npm run compile && vsce publish major",
+    "test:unit": "mocha \"out/test/unit/**/*.test.js\"",
+    "test:integration": "vscode-test",
+    "test": "npm run test:unit && npm run test:integration"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/sinon": "^17.0.4",
+    "@types/vscode": "^1.105.0",
+    "@types/ws": "^8.18.1",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.7.1",
+    "eslint": "^9.39.2",
+    "mocha": "^11.7.5",
+    "sinon": "^21.0.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0"
+  }
+}
