@@ -2,7 +2,7 @@
   "name": "cursor-team-on-demand-usage-indicator",
   "displayName": "Cursor Team On-Demand Usage Indicator",
   "description": "Cursor Team On-Demand Usage Indicator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "engines": {
     "vscode": "^1.105.0"

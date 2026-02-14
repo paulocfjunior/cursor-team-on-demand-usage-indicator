@@ -13,10 +13,11 @@ export interface ApiResponse {
 
 export interface UsageData {
     userEmail: string;
-    spendFormatted: string;
-    cycleRenewsDate: string;
-    daysUntilRenewal: number;
-    renewalDescription: string;
+    todaySpendFormatted: string;
+    mtdSpendFormatted: string;
+    cycleStartDate?: string;
+    cycleEndDate?: string;
+    daysUntilCycleEnd?: number;
 }
 
 export type RefreshIntervalSeconds = 10 | 15 | 30 | 60;

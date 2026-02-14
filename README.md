@@ -4,8 +4,8 @@ Shows Cursor on-demand spend directly in the VS Code status bar.
 
 ## Features
 
-- Status bar indicator with spend and renewal countdown, for example: `$ 1,320.12 (2d cycle end)`
-- One-click QuickPick menu with details, refresh, logout, and open dashboard actions
+- Status bar indicator with today's spend, for example: `$ 42.10 today`
+- One-click QuickPick menu with details (today + MTD + cycle dates), refresh, logout, and open dashboard actions
 - Login flow via Chrome + DevTools Protocol cookie capture
 - Manual cookie paste fallback when browser automation is unavailable
 - Secure cookie storage using `vscode.SecretStorage`

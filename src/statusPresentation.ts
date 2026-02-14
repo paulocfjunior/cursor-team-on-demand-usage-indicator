@@ -23,10 +23,15 @@ export function getStatusBarPresentation(snapshot: StatusSnapshot): { text: stri
     }
 
     if (snapshot.kind === "ready" && snapshot.usage) {
-        const daysUntilRenewal = Math.max(snapshot.usage.daysUntilRenewal, 0);
+        const cycleRange = snapshot.usage.cycleStartDate && snapshot.usage.cycleEndDate
+            ? `${snapshot.usage.cycleStartDate} - ${snapshot.usage.cycleEndDate}`
+            : "cycle dates unavailable";
+        const cycleLeft = typeof snapshot.usage.daysUntilCycleEnd === "number"
+            ? `(${Math.max(snapshot.usage.daysUntilCycleEnd, 0)}d left)`
+            : "";
         return {
-            text: `$(credit-card) ${snapshot.usage.spendFormatted} (${daysUntilRenewal}d cycle end)`,
-            tooltip: `Cursor: ${snapshot.usage.spendFormatted} | Renews ${snapshot.usage.cycleRenewsDate}`,
+            text: `$(credit-card) ${snapshot.usage.todaySpendFormatted} ${cycleLeft}`.trim(),
+            tooltip: `Today: ${snapshot.usage.todaySpendFormatted} | MTD: ${snapshot.usage.mtdSpendFormatted} | Cycle: ${cycleRange}`,
         };
     }
 

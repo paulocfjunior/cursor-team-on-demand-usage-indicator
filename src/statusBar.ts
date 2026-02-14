@@ -27,11 +27,21 @@ interface MenuItem extends vscode.QuickPickItem {
 }
 
 function createUsageDetails(usage: UsageData): MenuItem[] {
+    const cycleDetails = usage.cycleStartDate && usage.cycleEndDate
+        ? `${usage.cycleStartDate} -> ${usage.cycleEndDate}`
+        : usage.cycleEndDate
+            ? `ends ${usage.cycleEndDate}`
+            : "not available";
+    const cycleDaysLeft = typeof usage.daysUntilCycleEnd === "number"
+        ? ` (${usage.daysUntilCycleEnd}d left)`
+        : "";
+
     return [
         { kind: vscode.QuickPickItemKind.Separator, label: "Cursor On-Demand Usage" },
         { label: `User: ${usage.userEmail}` },
-        { label: `Monthly spend: ${usage.spendFormatted}` },
-        { label: `Cycle renews: ${usage.cycleRenewsDate}, ${usage.renewalDescription}` },
+        { label: `Today spend: ${usage.todaySpendFormatted}` },
+        { label: `MTD spend: ${usage.mtdSpendFormatted}` },
+        { label: `Cycle: ${cycleDetails}${cycleDaysLeft}` },
         { kind: vscode.QuickPickItemKind.Separator, label: "Actions" },
     ];
 }

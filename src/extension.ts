@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { clearApiCache, fetchTeamSpend, parseUsageData } from "./api";
+import { clearApiCache, fetchUsageData } from "./api";
 import { isValid as isJwtValid } from "./jwt";
 import { CdpLoginSession } from "./login";
 import { clearSession, extractToken, importFromLegacyFile, isSessionValid, readSession, writeSession } from "./session";
@@ -55,8 +55,7 @@ async function refreshUsage(context: vscode.ExtensionContext): Promise<void> {
             return;
         }
 
-        const response = await fetchTeamSpend(getTeamId(), cookieString);
-        const usage = parseUsageData(response);
+        const usage = await fetchUsageData(getTeamId(), cookieString);
         statusBarManager.setSnapshot({ kind: "ready", usage });
     } catch (error) {
         statusBarManager.setSnapshot({

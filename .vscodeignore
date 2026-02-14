@@ -10,3 +10,9 @@ vsc-extension-quickstart.md
 **/*.ts
 **/.vscode-test.*
 .env
+*.sh
+*.json.example
+me.json
+usage-summary-example.json
+get-filtered-usage-events.json
+out/test/**

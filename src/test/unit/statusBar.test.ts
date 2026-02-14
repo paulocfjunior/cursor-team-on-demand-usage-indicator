@@ -17,12 +17,13 @@ describe("status bar presentation", () => {
             kind: "ready",
             usage: {
                 userEmail: "user@example.com",
-                spendFormatted: "$ 1,320.12",
-                cycleRenewsDate: "Feb 16",
-                daysUntilRenewal: 2,
-                renewalDescription: "in 2 days",
+                todaySpendFormatted: "$ 42.10",
+                mtdSpendFormatted: "$ 1,320.12",
+                cycleStartDate: "Jan 16",
+                cycleEndDate: "Feb 16",
+                daysUntilCycleEnd: 2,
             },
         });
-        assert.strictEqual(result.text, "$(credit-card) $ 1,320.12 (2d cycle end)");
+        assert.strictEqual(result.text, "$(credit-card) $ 42.10 (2d left)");
     });
 });
